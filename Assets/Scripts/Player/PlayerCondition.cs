@@ -38,7 +38,7 @@ public class PlayerCondition : MonoBehaviour , IDamagable
         {
             Die();
         }
-
+         
     }
 
     public void Heal(float amount) 
@@ -75,6 +75,17 @@ public class PlayerCondition : MonoBehaviour , IDamagable
         }
 
         stamina.Subtract(amount);
+        return true;
+    }
+
+    public bool UseHealth(float amount)
+    {
+        if (health.curValue - amount < 0f)
+        {
+            return false;
+        }
+
+        health.Subtract(amount);
         return true;
     }
 

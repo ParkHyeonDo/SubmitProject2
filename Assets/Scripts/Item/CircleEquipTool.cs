@@ -1,8 +1,12 @@
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class EquipTool : Equip
+public class CircleEquipTool : Equip
 {
     public float attackRate;
     private bool attacking;
@@ -10,15 +14,13 @@ public class EquipTool : Equip
     public float useStamina;
     public float useHealth;
 
-    [Header("Resource Gathering")]
-    public bool doesGatherResources;
-
     [Header("Combat")]
     public bool doesDealDamage;
     public int damage;
 
     private Animator animator;
     private Camera camera;
+    private NPC npc;
 
 
     // Start is called before the first frame update
@@ -30,7 +32,7 @@ public class EquipTool : Equip
 
     public override void OnAttackInput()
     {
-        if (!attacking) 
+        if (!attacking)
         {
             if (CharacterManager.Instance.Player.condition.UseStamina(useStamina)
                 && CharacterManager.Instance.Player.condition.UseHealth(useHealth))
@@ -42,24 +44,29 @@ public class EquipTool : Equip
         }
     }
 
-    void OnCanAttack() 
+    void OnCanAttack()
     {
         attacking = false;
     }
 
-    public override void OnHit() 
+    public void OnHit()
     {
-        Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, attackDistance)) 
+        Collider[] cols = Physics.OverlapSphere(transform.position, attackDistance);
+        if (cols.Length == 0) return;
+        else if (cols.Length > 0) 
         {
-            if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource)) 
+            for (int i = 0; i < cols.Length; i++) 
             {
-                resource.Gather(hit.point, hit.normal);
+                if (cols[i].CompareTag("Enemy")) 
+                {
+                    npc = cols[i].GetComponent<NPC>();
+                    Debug.Log(damage + " " + npc.name);
+                    npc.TakePhysicalDamage(damage);
+                }
             }
         }
     }
-}
 
+    
+}
 

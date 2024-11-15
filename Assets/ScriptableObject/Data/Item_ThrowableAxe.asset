@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e82b44ac870cc5843801fc1748bf44ab, type: 3}
-  m_Name: Item_BurserkerSword
+  m_Name: Item_ThrowableAxe
   m_EditorClassIdentifier: 
-  displayName: "\uB9C8\uAC80"
-  description: "\uACF5\uACA9\uC2DC \uC2DC\uC804\uC790\uC758 \uCCB4\uB825\uC744 \uAC09\uC544\uBA39\uC2B5\uB2C8\uB2E4"
+  displayName: "\uD22C\uCC99\uB3C4\uB07C"
+  description: "\uB3C4\uB07C\uB97C \uB358\uC9D1\uB2C8\uB2E4."
   type: 0
-  icon: {fileID: 21300000, guid: 4f2f320a217307a48a107491b1d17ebb, type: 3}
-  dropPrefab: {fileID: 3769455136127694892, guid: 16c42cd6869e3164caf2891d624f4d55, type: 3}
+  icon: {fileID: 21300000, guid: 06e8d836c76eb494db7ab3784ffcb0eb, type: 3}
+  dropPrefab: {fileID: 6866008082773312246, guid: d7bb74a1a6f358c44afcce351a496709, type: 3}
   canStack: 0
   maxStackAmount: 0
   consumables: []
-  equipPrefab: {fileID: 1526215098619677440, guid: 4a11115b6bd658c43bf7c533415298e5, type: 3}
+  equipPrefab: {fileID: 2111021226117261099, guid: 571eb4da46a874d49a14eb43d3f51c65, type: 3}
